@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ns3="http://www.Dummy.com/certificate_namespace/Types" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.Dummy.com/common_namespace/Types" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.Dummy.com/certificate_namespace/Types" schemaLocation="certificate_namespace.xsd"/>
+    <xs:complexType name="DummyIdentification">
+        <xs:sequence>
+            <xs:element name="DummyNumber" type="xs:string" form="qualified"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DummyResult">
+        <xs:sequence>
+            <xs:element name="text" type="xs:string" form="qualified" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
+
