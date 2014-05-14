@@ -194,4 +194,28 @@ describe('SOAP Client', function() {
       }, baseUrl);
     });
   });
+
+  describe("Request Namespace", function () {
+
+    it('should set the correct Namespaces when a request is invoked', function (done) {
+
+      var message = '<ns1:DummyRequest xmlns:ns1=\"http://www.Dummy.com/certificate_namespace/Types\" xmlns=\"http://www.Dummy.com/certificate_namespace/Types\">' +
+                    '<ns1:DummyIdentification>' +
+                    '<ns2:DummyNumber xmlns:ns2="http://www.Dummy.com/common_namespace/Types" xmlns="">1</ns2:DummyNumber>' +
+                    '</ns1:DummyIdentification>' +
+                    '</ns1:DummyRequest>';
+
+      soap.createClient(__dirname + '/wsdl/child_namespace.wsdl', function (err, client) {
+       assert.ok(client);
+
+
+        client.FetchDummy({DummyRequest: {DummyNumber: "1"}}, function (err, result) {
+          assert.ok(client.lastMessage);
+          assert.equal(client.lastMessage, message);
+        });
+      });
+
+    });
+  });
+
 });
